@@ -1,6 +1,6 @@
 import sqlite3
 
-CREATE_HW_TABLE = """CREATE TABLE homework IF NOT EXISTS
+CREATE_HW_TABLE = """CREATE TABLE IF NOT EXISTS homework
                     (id INTEGER PRIMARY KEY, course TEXT, type TEXT, time INTEGER);"""
 
 INSERT_HW = "INSERT INTO homework (course, type, time) VALUES (?, ?, ?);"
@@ -14,7 +14,7 @@ def create_table(connection):
     with connection:
         connection.execute(CREATE_HW_TABLE)
 
-def add_hw(course, type, time):
+def add_hw(connection, course, type, time):
     with connection:
         connection.execute(INSERT_HW, (course, type, time))
 
